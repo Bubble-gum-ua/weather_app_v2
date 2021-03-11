@@ -1,10 +1,9 @@
 import React from "react";
 
-
-export const PreviewCard = () => {
+export const ShortCard = (props) => {
     return (
         <div>
-            CARD
+            {props.city.name}
         </div>
     )
 }

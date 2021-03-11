@@ -1,8 +1,8 @@
 import React from "react";
 import {Button, Input} from "@material-ui/core";
-import {useDispatch} from "react-redux";
-import {getCityInfo} from "../../Redux/CardReducer";
 import {useFormik} from "formik";
+import {addCity} from "../../Redux/CardReducer";
+import {useDispatch} from "react-redux";
 
 export const SearchItem = () => {
     const dispatch = useDispatch()
@@ -11,14 +11,13 @@ export const SearchItem = () => {
             name: '',
         },
         onSubmit: (values) => {
-            dispatch(getCityInfo(values.name, 'ADD_CITY'))
+            dispatch(addCity(values.name, 'ADD'))
             formik.resetForm()
         },
     })
-
     return (
         <div>
-            <form onSubmit={formik.handleSubmit} >
+            <form onSubmit={formik.handleSubmit}>
                 <Input
                     placeholder='Type here the city name' {...formik.getFieldProps('name')}
                     onChange={formik.handleChange} value={formik.values.name}
@@ -26,7 +25,6 @@ export const SearchItem = () => {
                 <Button type='submit'
                         variant='contained' color='primary'> Add City</Button>
             </form>
-
         </div>
     )
 }

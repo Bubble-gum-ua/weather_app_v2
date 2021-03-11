@@ -1,43 +1,34 @@
 import React from "react";
-import {weatherApi} from "../Api/Api";
 
 const ADD_CITY = "ADD_CITY";
+const UPDATE_BODY = "UPDATE_BODY";
 
 const initialState = {
-    city: []
+    city: {
+        name: "Kiev"
+    }
 }
-console.log(initialState)
 
-export const CardReducer = (state = initialState, action,result) => {
-    switch (action) {
+export const cardReducer = (state = initialState, action) => {
+    switch (action.type) {
         case ADD_CITY: {
             return {
                 ...state,
-                city: [result, ...state.city]
+                city: [action.city, state.city]
+            }
+        }
+        case  UPDATE_BODY: {
+            return {
+                ...state,
+                city: [...state.city]
             }
         }
         default:
-            return state;
-    }
-}
-
-export const addCity = (result) => ({type: ADD_CITY, result})
-
-
-export const getCityInfo = (name,action) => {
-    return async (dispatch) => {
-        try {
-            let result = await weatherApi.getCityData(name)
-            if (action === "ADD_CITY"){
-                dispatch(addCity(result))
-                console.log(result)
-                debugger;
+            return {
+                state
             }
-
-
-        } catch (err) {
-            dispatch("")
-        }
     }
 }
-console.log(initialState)
+
+export const addCity = (name) => ({type: ADD_CITY, name});
+export const updateBody = (city) => ({type: UPDATE_BODY, city});

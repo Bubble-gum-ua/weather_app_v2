@@ -1,17 +1,22 @@
 import React from "react";
-import {SearchItem} from "./SearchItemComponent/SearchItem";
-import {PreviewCard} from "./PreviewCardComponent/PreviewCard";
+import {SearchItem} from "./SearchItemComponent/SeacrhItem";
+import {ShortCard} from "./ShortCardInfo/ShortCard";
+
 
 export const MainBody = (props) => {
     console.log(props)
-/*    let cardAdd = props.city.map(city =>  <PreviewCard name={city.name}/>)*/
+
     return (
         <div>
-            Body
+            HERE MAIN BODY
             <div>
+                SEARCH COMPONENT
                 <SearchItem/>
             </div>
-           {/* <div> {cardAdd}</div>*/}
+            <div>
+                SHORT INFO CARD
+                <ShortCard city={props.city}/>
+            </div>
         </div>
     )
 }

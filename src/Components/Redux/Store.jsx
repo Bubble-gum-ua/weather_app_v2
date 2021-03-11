@@ -1,12 +1,14 @@
+import React from "react";
 import {applyMiddleware, combineReducers, createStore} from "redux";
+import {cardReducer} from "./CardReducer";
 import thunk from "redux-thunk";
-import {CardReducer} from "./CardReducer";
 
 let reducers = combineReducers({
-    city: CardReducer,
+    city: cardReducer
 })
 
-const store = createStore(reducers, applyMiddleware(thunk));
+const store = createStore(reducers,applyMiddleware(thunk));
 
 window.store = store;
+
 export default store;
