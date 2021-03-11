@@ -3,7 +3,7 @@ import thunk from "redux-thunk";
 import {CardReducer} from "./CardReducer";
 
 let reducers = combineReducers({
-    cities: CardReducer,
+    city: CardReducer,
 })
 
 const store = createStore(reducers, applyMiddleware(thunk));

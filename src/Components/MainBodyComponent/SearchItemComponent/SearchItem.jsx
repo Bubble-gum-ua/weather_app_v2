@@ -11,7 +11,7 @@ export const SearchItem = () => {
             name: '',
         },
         onSubmit: (values) => {
-            dispatch(getCityInfo(values.name, 'ADD'))
+            dispatch(getCityInfo(values.name, 'ADD_CITY'))
             formik.resetForm()
         },
     })
