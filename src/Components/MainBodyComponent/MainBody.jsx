@@ -4,7 +4,6 @@ import {ShortCard} from "./ShortCardInfo/ShortCard";
 
 
 export const MainBody = (props) => {
-    console.log(props)
 
     return (
         <div>
@@ -14,7 +13,7 @@ export const MainBody = (props) => {
                 <SearchItem/>
             </div>
             <div>
-                SHORT INFO CARD
+                {/* SHORT INFO CARD*/}
                 <ShortCard city={props.city}/>
             </div>
         </div>

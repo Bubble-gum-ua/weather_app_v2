@@ -17,7 +17,6 @@ export const cardReducer = (state = initialState, action) => {
                 city: {name: action.name}
 
             }
-            console.log(state)
         }
         case  UPDATE_BODY: {
             return {
@@ -27,7 +26,6 @@ export const cardReducer = (state = initialState, action) => {
         }
         default:
             return state
-
     }
 }
 
