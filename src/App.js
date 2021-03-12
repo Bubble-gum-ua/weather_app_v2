@@ -4,7 +4,7 @@ import {MainBody} from "./Components/MainBodyComponent/MainBody";
 import {useSelector} from "react-redux";
 
 function App() {
-    let city = useSelector(state => state.city.state.city)
+    let city = useSelector(state => state.city.city)
     debugger;
     console.log(city)
 

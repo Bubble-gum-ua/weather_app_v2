@@ -13,8 +13,8 @@ export const cardReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CITY: {
             return {
-                ...state.state,
-                city: [action.name, ...state.state.city]
+                ...state,
+                city: {name: action.name}
 
             }
             console.log(state)
@@ -26,9 +26,8 @@ export const cardReducer = (state = initialState, action) => {
             }
         }
         default:
-            return {
-                state
-            }
+            return state
+
     }
 }
 
