@@ -5,7 +5,7 @@ const UPDATE_BODY = "UPDATE_BODY";
 
 const initialState = {
     city: {
-        name: "Kiev"
+        name: ""
     }
 }
 
@@ -13,14 +13,16 @@ export const cardReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_CITY: {
             return {
-                ...state,
-                city: [action.city, state.city]
+                ...state.state,
+                city: [action.name, ...state.state.city]
+
             }
+            console.log(state)
         }
         case  UPDATE_BODY: {
             return {
-                ...state,
-                city: [...state.city]
+                ...state.state,
+                city: [...state.state.city]
             }
         }
         default:
@@ -29,6 +31,7 @@ export const cardReducer = (state = initialState, action) => {
             }
     }
 }
+
 
 export const addCity = (name) => ({type: ADD_CITY, name});
 export const updateBody = (city) => ({type: UPDATE_BODY, city});

@@ -5,7 +5,9 @@ import {useSelector} from "react-redux";
 
 function App() {
     let city = useSelector(state => state.city.state.city)
+    debugger;
     console.log(city)
+
 
     return (
         <div className="App">
