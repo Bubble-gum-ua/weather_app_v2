@@ -16,16 +16,16 @@ const useStyles = makeStyles((theme) => ({
 
 export const ShortCard = (props) => {
     const classes = useStyles();
+    let city = props.city;
     return (
         <div>
             Short info
-            <Grid container spacing={3}>
-                <Grid item xs={3}>
+
                     <Paper className={classes.paper}>
-                        <h2> {props.city.name} </h2>
+                        <h2> {city.name} </h2>
+                        {city.main.temp}
                     </Paper>
-                </Grid>
-            </Grid>
+
         </div>
     )
 }

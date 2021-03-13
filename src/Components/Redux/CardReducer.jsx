@@ -1,12 +1,11 @@
 import React from "react";
+import {weatherApi} from "../Api/Api";
 
 const ADD_CITY = "ADD_CITY";
 const UPDATE_BODY = "UPDATE_BODY";
 
 const initialState = {
-    city: {
-        name: ""
-    }
+    city: []
 }
 
 export const cardReducer = (state = initialState, action) => {
@@ -14,7 +13,7 @@ export const cardReducer = (state = initialState, action) => {
         case ADD_CITY: {
             return {
                 ...state,
-                city: {name: action.name}
+                city: [action.city, ...state.city]
 
             }
         }
@@ -30,5 +29,13 @@ export const cardReducer = (state = initialState, action) => {
 }
 
 
-export const addCity = (name) => ({type: ADD_CITY, name});
+export const addCity = (city) => ({type: ADD_CITY, city});
 export const updateBody = (city) => ({type: UPDATE_BODY, city});
+
+
+export const getCityData = (name) =>{
+    return async (dispatch) =>{
+        let result = await weatherApi.getCityData(name);
+        dispatch(addCity(result))
+    }
+}
