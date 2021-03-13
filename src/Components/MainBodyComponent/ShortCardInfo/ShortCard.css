@@ -1,0 +1,33 @@
+.tempValue {
+    font-size: 35px;
+    padding-right: 15px;
+}
+
+.tempDescription {
+    font-size: 25px;
+}
+
+.additionalParams img {
+    width: 25px;
+    padding-right: 5px;
+    vertical-align: middle;
+}
+
+.dateContainer {
+    font-size: 12px;
+}
+
+.tempContent {
+    border-bottom: 1px solid rgb(234, 234, 235);
+    padding-bottom: 5px;
+}
+
+.windContainer {
+    border-right: 1px solid rgb(234, 234, 235);
+    padding-right: 3px;
+
+}
+
+.additionalParams {
+    padding-top: 5px;
+}

@@ -14,3 +14,8 @@ export const weatherApi = {
             .then(res => res.data)
     },
 }
+
+
+export const getWeatherIcons = (icon) => {
+    return `https://openweathermap.org/img/wn/${icon}@2x.png`
+}
