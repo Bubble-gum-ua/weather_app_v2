@@ -1,11 +1,15 @@
 import React from "react";
 import Paper from "@material-ui/core/Paper";
-import {Grid, makeStyles} from "@material-ui/core";
+import {Button, Grid, makeStyles} from "@material-ui/core";
 import {ActualDate} from "../../Tools/Date";
 import "./ShortCard.css";
 import windIco from "../../Assets/windIco.png"
 import humidityIco from "../../Assets/humidity.png"
 import {getWeatherIcons} from "../../Api/Api";
+import DeleteIcon from '@material-ui/icons/Delete';
+import {Refresh} from "@material-ui/icons";
+import {useDispatch} from "react-redux";
+import {deleteCity, getCityData} from "../../Redux/CardReducer";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -25,9 +29,17 @@ const useStyles = makeStyles((theme) => ({
 export const ShortCard = (props) => {
     const classes = useStyles();
     let city = props.city;
+    const dispatch = useDispatch();
 
     function roundData(value) {
         return Math.round(value)
+    }
+
+    const deleteCityCard = () => {
+        dispatch(deleteCity(city.name))
+    }
+    const refreshCard = () => {
+        dispatch(getCityData(city.name,"REFRESH"))
     }
 
     let ico = getWeatherIcons(city.weather[0].icon)
@@ -54,7 +66,7 @@ export const ShortCard = (props) => {
                         <div className="additionalParams">
                              <span className="windContainer">
                                  <img src={windIco} alt="windIco"/>
-                                 {city.wind.speed} mps
+                                 {roundData(city.wind.speed)} mps
                               </span>
                             <span className="humidityContainer">
                                   <img src={humidityIco} alt="humidityIco"/>
@@ -64,6 +76,24 @@ export const ShortCard = (props) => {
                     </Grid>
                     <Grid item xs={4}>
                         <img src={ico} alt="weatherIco"/>
+                        <div>
+                            <Button
+                                variant="text"
+                                color="secondary"
+                                className={classes.button}
+                                startIcon={<DeleteIcon/>}
+                                onClick={deleteCityCard}
+                            >
+                            </Button>
+                            <Button
+                                variant="text"
+                                color="primary"
+                                className={classes.button}
+                                startIcon={<Refresh/>}
+                                onClick={refreshCard}
+                            >
+                            </Button>
+                        </div>
                     </Grid>
                 </Grid>
             </Paper>
