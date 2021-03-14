@@ -10,6 +10,7 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import {Refresh} from "@material-ui/icons";
 import {useDispatch} from "react-redux";
 import {deleteCity, getCityData} from "../../Redux/CardReducer";
+import {useHistory} from "react-router";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -22,8 +23,11 @@ const useStyles = makeStyles((theme) => ({
         marginTop: "15px",
         background: "linear-gradient(to right, #FFFFFF, #C5CED3)",
         maxWidth: "400px",
-        maxHeight: "200px"
+        maxHeight: "200px",
     },
+    clickZone: {
+        cursor: "pointer"
+    }
 }));
 
 export const ShortCard = (props) => {
@@ -43,12 +47,15 @@ export const ShortCard = (props) => {
     }
 
     let ico = getWeatherIcons(city.weather[0].icon)
-
+    const history = useHistory();
+    const detailPageSwitch = () => {
+        history.push(`/${city.name}`)
+    }
     return (
-        <div className="shortCardWrapper">
+        <div className="shortCardWrapper" >
             <Paper className={classes.paper}>
                 <Grid container spacing={3}>
-                    <Grid item xs={8}>
+                    <Grid item xs={8} onClick={detailPageSwitch} className={classes.clickZone}>
                         <div className="dateContainer">
                             {ActualDate()}
                         </div>

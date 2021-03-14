@@ -8,10 +8,10 @@ export function ActualDate () {
     let dayOfWeek = ["Mon","Tue","Wed","Thu","Fri","Sun","Sat"]
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
     return (
-        <div>
+        <span>
            <span>{dayOfWeek[day]}, </span>
            <span>  {currentDate} {months[month]}, </span>
            <span>{hours}h : {minutes}m </span>
-        </div>
+        </span>
     )
 }

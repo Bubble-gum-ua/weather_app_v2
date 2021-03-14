@@ -1,0 +1,10 @@
+.detailBox img {
+    width: 30px;
+}
+
+.detailPageWrapp{
+    text-align: center;
+    color: white;
+    background-color: rgba(100,149,162,0.5);
+    border: 5px solid yellow;
+}
