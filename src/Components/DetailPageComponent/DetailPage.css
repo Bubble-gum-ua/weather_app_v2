@@ -1,10 +1,44 @@
 .detailBox img {
     width: 30px;
+    margin-right: 5px;
 }
 
-.detailPageWrapp{
+.detailPageWrapp {
     text-align: center;
     color: white;
-    background-color: rgba(100,149,162,0.5);
-    border: 5px solid yellow;
+    background-color: rgba(133, 190, 187, 0.5);
+    max-width: 850px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+    padding: 30px;
+    margin: 50px 10% 0 25%;
+}
+
+.detailPageHeader{
+    display: flex;
+    justify-content: space-between;
+}
+
+.weatherVisual img {
+    max-width: 100px;
+}
+
+.weatherDescription {
+    font-size: 40px;
+    margin-bottom: 30px;
+}
+
+/*
+.detailBox {
+    display: flex;
+    justify-content: space-around;
+}
+
+.detailBox span {
+    display: flex;
+    align-items: center;
+}
+*/
+
+.mainTempCount{
+    font-size: 50px;
 }

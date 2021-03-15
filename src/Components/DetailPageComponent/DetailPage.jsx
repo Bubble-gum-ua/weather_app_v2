@@ -1,5 +1,5 @@
 import React, {useState} from "react";
-import {useParams} from "react-router";
+import {useHistory, useParams} from "react-router";
 import {ActualDate} from "../Tools/Date";
 import {getWeatherIcons} from "../Api/Api";
 import windIco from "../Assets/windIco.png";
@@ -7,8 +7,14 @@ import humidityIco from "../Assets/humidity.png";
 import pressureIco from "../Assets/pressureIco.png";
 import temperatureIco from "../Assets/temperatureIco.png"
 import "./DetailPage.css"
+import {Button, Grid} from "@material-ui/core";
+import {Clear} from "@material-ui/icons";
 
 export const DetailPAge = (props) => {
+    const history = useHistory();
+    const backToMain = () => {
+        history.push(`/`)
+    }
     const nameFromLink = useParams();
     const [city, setCity] = useState('')
 
@@ -25,33 +31,50 @@ export const DetailPAge = (props) => {
         return Math.round(value)
     }
 
+
     return (
         <div className="detailPageWrapp">
             <div>
-                <ActualDate/> - TODAY
+              <span className="detailPageHeader">
+                  <ActualDate/>
+                     <Button
+                         startIcon={<Clear/>}
+                         onClick={backToMain}
+                     >
+                         Close
+                     </Button>
+              </span>
                 <h1> {city.name}</h1>
             </div>
-            <div>
-                <span> LOW {roundData(city.main.temp_max)} °C</span>
-                <span> {roundData(city.main.temp)} °C</span>
-                <span> HIGH {roundData(city.main.temp_min)} °C</span>
+            <div className="tempBlock">
+                <div> LOW: {roundData(city.main.temp_max)} °C</div>
+                <div className="mainTempCount"> {roundData(city.main.temp)} °C</div>
+                <div> HIGH: {roundData(city.main.temp_min)} °C</div>
             </div>
-            <div>
+            <div className="weatherVisual">
                 <img src={ico} alt="weatherIco"/>
-                <div> {city.weather[0].description} </div>
+                <div className="weatherDescription"> {city.weather[0].description} </div>
             </div>
             <div className="detailBox">
-                <img src={humidityIco} alt="humidityIco"/>
-                <span> HUMIDITY {city.main.humidity}% </span>
-                <span>
-                    <img src={temperatureIco} alt="temperatureIco"/>FEELS LIKE {roundData(city.main.feels_like)} °C
-                </span>
-                <img src={windIco} alt="windIco"/>
-                <span> SPEED {city.wind.speed} </span>
-                <span> DEG {city.wind.deg} </span>
-                <span>
-                    <img src={pressureIco} alt="pressureIco"/>PRESSURE {city.main.pressure}
-                </span>
+                <Grid container spacing={3}>
+                    <Grid item xs={3}>
+                        <img src={humidityIco} alt="humidityIco"/>
+                        HUMIDITY: {city.main.humidity}%
+                    </Grid>
+                    <Grid item xs={3}>
+                        <img src={temperatureIco} alt="temperatureIco"/>FEELS LIKE: {roundData(city.main.feels_like)} °C
+                    </Grid>
+                    <Grid item xs={3}>
+                        <img src={windIco} alt="windIco"/>
+                        SPEED: {city.wind.speed} M/S, DEG: {city.wind.deg}
+                    </Grid>
+                    <Grid item xs={3}>
+                        <img src={pressureIco} alt="pressureIco"/>PRESSURE: {city.main.pressure}
+                    </Grid>
+                </Grid>
+            </div>
+            <div>
+                GRAPHIC
             </div>
         </div>
     )
