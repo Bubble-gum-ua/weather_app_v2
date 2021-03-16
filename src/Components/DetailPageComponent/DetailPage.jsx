@@ -1,7 +1,7 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router";
 import {ActualDate} from "../Tools/Date";
-import {getWeatherIcons} from "../Api/Api";
+import {getWeatherIcons, weatherApi} from "../Api/Api";
 import windIco from "../Assets/windIco.png";
 import humidityIco from "../Assets/humidity.png";
 import pressureIco from "../Assets/pressureIco.png";
@@ -9,14 +9,24 @@ import temperatureIco from "../Assets/temperatureIco.png"
 import "./DetailPage.css"
 import {Button, Grid} from "@material-ui/core";
 import {Clear} from "@material-ui/icons";
+import {GraphChart} from "./GraphChart/GraphChart";
+import {useDispatch} from "react-redux";
+import {getHourlyData} from "../Redux/CardReducer";
 
 export const DetailPAge = (props) => {
     const history = useHistory();
+    const dispatch = useDispatch();
     const backToMain = () => {
         history.push(`/`)
     }
     const nameFromLink = useParams();
     const [city, setCity] = useState('')
+
+    useEffect(() => {
+        if (city) {
+            dispatch(getHourlyData(city.coord.lat, city.coord.lon))
+        }
+    }, [city, dispatch])
 
     if (city.length === 0) {
         for (let i = 0; i < props.city.length; i++) {
@@ -30,6 +40,10 @@ export const DetailPAge = (props) => {
     function roundData(value) {
         return Math.round(value)
     }
+
+
+
+    let hourlyTemp = props.hourlyData[0]?.hourly.map(h => <GraphChart temp={h.temp}/>)
 
 
     return (
@@ -75,6 +89,9 @@ export const DetailPAge = (props) => {
             </div>
             <div>
                 GRAPHIC
+                <div>
+                    {hourlyTemp}
+                </div>
             </div>
         </div>
     )

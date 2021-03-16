@@ -1,0 +1,11 @@
+.graphChart{
+    position: relative;
+}
+
+.graphBody{
+/*    position: absolute;*/
+    width: 50px;
+    background: red;
+    top: 50px;
+    left: 50px;
+}

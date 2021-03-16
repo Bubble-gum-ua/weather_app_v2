@@ -13,6 +13,10 @@ export const weatherApi = {
         return instance.get(`weather?appid=${API_KEY}&units=metric&q=${name}`)
             .then(res => res.data)
     },
+    getHourlyWeatherData (lat,lon) {
+        return instance.get(`onecall?lat=${lat}&lon=${lon}&exclude=current,minutely,daily,alerts&appid=${API_KEY}&units=metric`)
+            .then(res => res.data)
+    }
 }
 
 
