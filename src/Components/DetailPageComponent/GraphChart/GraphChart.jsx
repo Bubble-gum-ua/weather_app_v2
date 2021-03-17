@@ -3,12 +3,14 @@ import "./GraphChart.css"
 
 
 export const GraphChart = (props) => {
-    const temp = props.temp;
+    function roundData(value) {
+        return Math.round(value)
+    }
+    const temp = roundData(props.temp);
+    let rightPosition = (temp-5) * (-1)
     return (
-        <div className="graphChart">
-            <div className="graphBody" style={{top: temp}}>
-                {temp}
+            <div className="graphBody" style={{top: rightPosition}} data-title={temp+"°C"}>
+               -
             </div>
-        </div>
     )
 }

@@ -7,11 +7,27 @@ import humidityIco from "../Assets/humidity.png";
 import pressureIco from "../Assets/pressureIco.png";
 import temperatureIco from "../Assets/temperatureIco.png"
 import "./DetailPage.css"
-import {Button, Grid} from "@material-ui/core";
+import {Button, Grid, makeStyles} from "@material-ui/core";
 import {Clear} from "@material-ui/icons";
 import {GraphChart} from "./GraphChart/GraphChart";
 import {useDispatch} from "react-redux";
 import {getHourlyData} from "../Redux/CardReducer";
+
+const useStyles = makeStyles((theme) => ({
+    root: {
+        flexGrow: 1,
+        justifyContent: "center",
+        borderBottom: "1px solid",
+        borderLeft: "1px solid",
+        position: "relative",
+        padding: "15px 5px 15px 0"
+
+    },
+    chart: {
+        padding: "8px !important"
+    }
+
+}));
 
 export const DetailPAge = (props) => {
     const history = useHistory();
@@ -19,6 +35,8 @@ export const DetailPAge = (props) => {
     const backToMain = () => {
         history.push(`/`)
     }
+
+    const classes = useStyles();
     const nameFromLink = useParams();
     const [city, setCity] = useState('')
 
@@ -35,16 +53,18 @@ export const DetailPAge = (props) => {
             }
         }
     }
+
     const ico = getWeatherIcons(city.weather[0].icon);
 
     function roundData(value) {
         return Math.round(value)
     }
 
-
-
-    let hourlyTemp = props.hourlyData[0]?.hourly.map(h => <GraphChart temp={h.temp}/>)
-
+    let hourlyTemp = props.hourlyData[0]?.hourly.map(h =>
+        <Grid item className={classes.chart}>
+            <GraphChart temp={h.temp}/>
+        </Grid>
+    )
 
     return (
         <div className="detailPageWrapp">
@@ -87,11 +107,13 @@ export const DetailPAge = (props) => {
                     </Grid>
                 </Grid>
             </div>
-            <div>
-                GRAPHIC
-                <div>
-                    {hourlyTemp}
+            <div className="graphChart">
+                <div className="chartTitle">
+                    HOURLY TEMPERATURE GRAPHIC
                 </div>
+                <Grid container spacing={1} className={classes.root}>
+                    {hourlyTemp}
+                </Grid>
             </div>
         </div>
     )

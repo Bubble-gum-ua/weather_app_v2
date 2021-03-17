@@ -1,11 +1,17 @@
-.graphChart{
-    position: relative;
+
+.graphBody {
+    position: absolute;
+    width: 12px;
+    background: #3c656f;
+    /*    top: 50px;*/
+
 }
 
-.graphBody{
-/*    position: absolute;*/
-    width: 50px;
-    background: red;
-    top: 50px;
-    left: 50px;
+.graphBody:hover::after {
+    content: attr(data-title);
+    position: absolute;
+    z-index: 1;
+    color: yellow;
+    font-size: 25px;
+    top:50px
 }
