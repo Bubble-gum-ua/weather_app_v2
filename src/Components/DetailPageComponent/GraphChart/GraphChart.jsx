@@ -7,9 +7,11 @@ export const GraphChart = (props) => {
         return Math.round(value)
     }
     const temp = roundData(props.temp);
-    let rightPosition = (temp-5) * (-1)
+    let truePosition = (temp-5) * (-1);
+    const tempDescription = props.description;
+
     return (
-            <div className="graphBody" style={{top: rightPosition}} data-title={temp+"°C"}>
+            <div className="graphBody" style={{top: truePosition}} data-title={temp+"°C" + tempDescription}>
                -
             </div>
     )
