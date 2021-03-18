@@ -11,7 +11,7 @@ export const GraphChart = (props) => {
     const tempDescription = props.description;
 
     return (
-            <div className="graphBody" style={{top: truePosition}} data-title={temp+"°C" + tempDescription}>
+            <div className="graphBody" style={{top: truePosition}} data-title={temp+ "°C" + " " + tempDescription }>
                -
             </div>
     )
