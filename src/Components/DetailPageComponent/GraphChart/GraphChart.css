@@ -14,5 +14,8 @@
     z-index: 1;
     color: yellow;
     font-size: 25px;
-    top:50px
+    top:-150px;
+    background-color: rgba(70, 98, 130, 0.7);
+    padding: 15px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
 }

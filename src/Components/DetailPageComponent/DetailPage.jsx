@@ -62,7 +62,7 @@ export const DetailPAge = (props) => {
 
     let hourlyTemp = props.hourlyData[0]?.hourly.map(h =>
         <Grid item className={classes.chart}>
-            <GraphChart temp={h.temp} description={h.weather[0].description} />
+            <GraphChart temp={h.temp} description={h.weather[0].description}/>
         </Grid>
     )
 
