@@ -54,7 +54,7 @@ export const DetailPAge = (props) => {
         }
     }
 
-    const ico = getWeatherIcons(city.weather[0].icon);
+    const ico = getWeatherIcons(city.weather[0]?.icon);
 
     function roundData(value) {
         return Math.round(value)
