@@ -1,7 +1,7 @@
 import React from "react";
 import {Button, Input} from "@material-ui/core";
 import {useFormik} from "formik";
-import {addCity, getCityData} from "../../Redux/CardReducer";
+import {getCityData} from "../../Redux/CardReducer";
 import {useDispatch} from "react-redux";
 
 export const SearchItem = () => {

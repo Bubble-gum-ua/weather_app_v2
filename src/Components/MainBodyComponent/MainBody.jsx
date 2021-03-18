@@ -3,6 +3,7 @@ import {SearchItem} from "./SearchItemComponent/SeacrhItem";
 import {ShortCard} from "./ShortCardInfo/ShortCard";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core";
+import "./MainBody.css"
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -26,12 +27,10 @@ export const MainBody = (props) => {
     const classes = useStyles();
 
     return (
-        <div>
-            HERE MAIN BODY
-            <div>
-                SEARCH COMPONENT
+        <div className="mainBody">
+            <h1> Type city name to look at the weather forecast</h1>
+            <div className="searchItem">
                 <SearchItem/>
-
             </div>
             <div>
                 <Grid container spacing={3} className={classes.root}>
