@@ -24,7 +24,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     chart: {
-        padding: "8px !important"
+        paddingRight: "25px !important"
     }
 
 }));
@@ -60,9 +60,14 @@ export const DetailPAge = (props) => {
         return Math.round(value)
     }
 
-    let hourlyTemp = props.hourlyData[0]?.hourly.map(h =>
-        <Grid item className={classes.chart}>
-            <GraphChart temp={h.temp} description={h.weather[0].description}/>
+    let hoursCut = (props.hourlyData[0]?.hourly.length > 24
+        ? props.hourlyData[0]?.hourly.splice(24)
+        : props.hourlyData[0]?.hourly
+    )
+
+    let hourlyTemp = hoursCut?.map(h =>
+        <Grid item className={classes.chart} key={h.id}>
+            <GraphChart temp={h.temp} dt={h.dt} description={h.weather[0].description}/>
         </Grid>
     )
 

@@ -27,6 +27,9 @@ const useStyles = makeStyles((theme) => ({
     },
     clickZone: {
         cursor: "pointer"
+    },
+    buttons: {
+        textAlign: "right"
     }
 }));
 
@@ -83,7 +86,7 @@ export const ShortCard = (props) => {
                     </Grid>
                     <Grid item xs={4}>
                         <img src={ico} alt="weatherIco"/>
-                        <div>
+                        <div className={classes.buttons}>
                             <Button
                                 variant="text"
                                 color="secondary"
