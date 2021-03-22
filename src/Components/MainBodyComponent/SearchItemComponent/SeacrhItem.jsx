@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React, {useEffect, useState} from "react";
 import {Button, Input} from "@material-ui/core";
 import {useFormik} from "formik";
 import {getCityData} from "../../Redux/CardReducer";
@@ -12,21 +12,27 @@ export const SearchItem = () => {
             name: '',
         },
         onSubmit: (values) => {
-          let init =   localStorage.setItem("name", JSON.stringify(['']))
+            if (localStorage.length === 0) {
+                localStorage.setItem("name", JSON.stringify([]))
+            }
             dispatch(getCityData(values.name, 'ADD'))
             formik.resetForm()
             let d = JSON.parse(localStorage.getItem("name"))
             d.push(values.name)
             console.log(d)
             localStorage.setItem("name", JSON.stringify(d))
-
-
         },
     })
-
     useEffect(() => {
-        return dispatch(getCityData(localStorage.getItem("name"), 'ADD'))
-    }, [])
+        let data = JSON.parse(localStorage.getItem("name"))
+        if (data != null) {
+            for (let i = 0; i <= data.length; i++) {
+                dispatch(getCityData(data[i], 'ADD'))
+            }
+        }
+    }, [dispatch])
+
+
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
