@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import {SearchItem} from "./SearchItemComponent/SeacrhItem";
 import {ShortCard} from "./ShortCardInfo/ShortCard";
 import Grid from "@material-ui/core/Grid";
@@ -12,6 +12,7 @@ const useStyles = makeStyles((theme) => ({
     },
 
 }));
+
 
 export const MainBody = (props) => {
     function Card() {
