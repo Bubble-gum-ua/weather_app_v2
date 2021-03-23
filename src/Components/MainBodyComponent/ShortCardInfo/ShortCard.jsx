@@ -44,9 +44,14 @@ export const ShortCard = (props) => {
 
     const deleteCityCard = () => {
         dispatch(deleteCity(city.name))
+        let d = JSON.parse(localStorage.getItem("name"))
+
+        d = d.filter(item => item !==city.name)
+        console.log(d)
+        localStorage.setItem("name", JSON.stringify(d))
     }
     const refreshCard = () => {
-        dispatch(getCityData(city.name,"REFRESH"))
+        dispatch(getCityData(city.name, "REFRESH"))
     }
 
     let ico = getWeatherIcons(city.weather[0].icon)
@@ -55,7 +60,7 @@ export const ShortCard = (props) => {
         history.push(`/${city.name}`)
     }
     return (
-        <div className="shortCardWrapper" >
+        <div className="shortCardWrapper">
             <Paper className={classes.paper}>
                 <Grid container spacing={3}>
                     <Grid item xs={8} onClick={detailPageSwitch} className={classes.clickZone}>
