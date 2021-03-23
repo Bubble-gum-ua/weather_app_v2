@@ -29,9 +29,12 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
+
+
 export const DetailPAge = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
+
     const backToMain = () => {
         history.push(`/`)
     }
@@ -51,24 +54,6 @@ export const DetailPAge = (props) => {
         }
     }, [city, dispatch])
 
-    /*useEffect(() => {
-        if (localStorage.length !== 0) {
-            let data = JSON.parse(localStorage.getItem("coord"))
-            let lat = data[0];
-            let lon = data[1];
-            console.log(data,"from local")
-            dispatch(getHourlyData(lat,lon))
-        }
-    }, [dispatch])
-*/
-    useEffect(() => {
-        let data = JSON.parse(localStorage.getItem("name"))
-        if (data != null) {
-            for (let i = 0; i < data.length; i++) {
-                dispatch(getCityData(data[i], 'ADD'))
-            }
-        }
-    }, [dispatch])
 
     if (city.length === 0) {
         for (let i = 0; i < props.city.length; i++) {
@@ -78,7 +63,7 @@ export const DetailPAge = (props) => {
         }
     }
 
-    const ico = getWeatherIcons(city.weather[0]?.icon);
+    const ico = getWeatherIcons(city?.weather[0]?.icon);
 
     function roundData(value) {
         return Math.round(value)
