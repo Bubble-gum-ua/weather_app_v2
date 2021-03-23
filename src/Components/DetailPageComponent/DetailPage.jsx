@@ -11,7 +11,7 @@ import {Button, Grid, makeStyles} from "@material-ui/core";
 import {Clear} from "@material-ui/icons";
 import {GraphChart} from "./GraphChart/GraphChart";
 import {useDispatch} from "react-redux";
-import {getHourlyData} from "../Redux/CardReducer";
+import {getCityData, getHourlyData} from "../Redux/CardReducer";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -43,8 +43,32 @@ export const DetailPAge = (props) => {
     useEffect(() => {
         if (city) {
             dispatch(getHourlyData(city.coord.lat, city.coord.lon))
+            localStorage.setItem("coord", JSON.stringify([]))
+            let d = JSON.parse(localStorage.getItem("coord"))
+            d.push(city.coord.lat, city.coord.lon)
+            console.log(d)
+            localStorage.setItem("coord", JSON.stringify(d))
         }
     }, [city, dispatch])
+
+    /*useEffect(() => {
+        if (localStorage.length !== 0) {
+            let data = JSON.parse(localStorage.getItem("coord"))
+            let lat = data[0];
+            let lon = data[1];
+            console.log(data,"from local")
+            dispatch(getHourlyData(lat,lon))
+        }
+    }, [dispatch])
+*/
+    useEffect(() => {
+        let data = JSON.parse(localStorage.getItem("name"))
+        if (data != null) {
+            for (let i = 0; i < data.length; i++) {
+                dispatch(getCityData(data[i], 'ADD'))
+            }
+        }
+    }, [dispatch])
 
     if (city.length === 0) {
         for (let i = 0; i < props.city.length; i++) {
@@ -61,8 +85,8 @@ export const DetailPAge = (props) => {
     }
 
     let hoursCut = (props.hourlyData[0]?.hourly.length > 24
-        ? props.hourlyData[0]?.hourly.splice(24)
-        : props.hourlyData[0]?.hourly
+            ? props.hourlyData[0]?.hourly.splice(24)
+            : props.hourlyData[0]?.hourly
     )
 
     let hourlyTemp = hoursCut?.map(h =>

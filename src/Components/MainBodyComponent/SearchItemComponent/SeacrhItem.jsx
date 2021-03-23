@@ -26,7 +26,7 @@ export const SearchItem = () => {
     useEffect(() => {
         let data = JSON.parse(localStorage.getItem("name"))
         if (data != null) {
-            for (let i = 0; i <= data.length; i++) {
+            for (let i = 0; i < data.length; i++) {
                 dispatch(getCityData(data[i], 'ADD'))
             }
         }
