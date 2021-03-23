@@ -20,12 +20,10 @@ function App() {
             }
         }
 
-
     function fd() {
         if( city.length > 0) {
             return <DetailPAge city={city} hourlyData={hourlyData}/>
         }
-
     }
     return (
         <div className="App">

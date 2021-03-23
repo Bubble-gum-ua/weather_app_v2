@@ -29,8 +29,6 @@ const useStyles = makeStyles((theme) => ({
 
 }));
 
-
-
 export const DetailPAge = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
@@ -46,14 +44,8 @@ export const DetailPAge = (props) => {
     useEffect(() => {
         if (city) {
             dispatch(getHourlyData(city.coord.lat, city.coord.lon))
-            localStorage.setItem("coord", JSON.stringify([]))
-            let d = JSON.parse(localStorage.getItem("coord"))
-            d.push(city.coord.lat, city.coord.lon)
-            console.log(d)
-            localStorage.setItem("coord", JSON.stringify(d))
         }
     }, [city, dispatch])
-
 
     if (city.length === 0) {
         for (let i = 0; i < props.city.length; i++) {

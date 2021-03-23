@@ -32,7 +32,6 @@ export const SearchItem = () => {
         }
     }, [dispatch])
 
-
     return (
         <div>
             <form onSubmit={formik.handleSubmit}>
