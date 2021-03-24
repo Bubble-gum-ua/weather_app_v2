@@ -15,16 +15,31 @@ export const SearchItem = () => {
             if (localStorage.length === 0) {
                 localStorage.setItem("name", JSON.stringify([]))
             }
-          /*  if (localStorage.length > 0) {
+            if (localStorage.length > 0) {
                 let d = JSON.parse(localStorage.getItem("name"))
-                for (let i = 0; i < d.length; i++) {
-                    if (d[i] === values.name) {
-                        alert("city already added")
+                for (let i = 0; i <= d.length; i++) {
+                    console.log(d[i],"di")
+                    switch (d[i] === values.name && d[i] !== undefined) {
+                        case true:
+                            console.log(d[i] === values.name)
+                            console.log(values.name,"al")
+                            alert("city already added")
+                            break;
+                        case false:
+                            console.log(d[i] )
+                            dispatch(getCityData(values.name, 'ADD'))
+                            formik.resetForm()
                     }
+                    /*if (d[i] === values.name) {
+                        console.log(d[i])
+                        alert("city already added")
+                    } else {
+                        console.log(d[i])
+                        dispatch(getCityData(values.name, 'ADD'))
+                        formik.resetForm()
+                    }*/
                 }
-            }*/
-            dispatch(getCityData(values.name, 'ADD'))
-            formik.resetForm()
+            }
         },
     })
 

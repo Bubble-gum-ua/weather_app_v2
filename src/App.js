@@ -17,6 +17,7 @@ function App() {
             if (data != null) {
                 for (let i = 0; i < data.length; i++) {
                     dispatch(getCityData(data[i], 'ADD'))
+                    debugger;
                 }
             }
         }
