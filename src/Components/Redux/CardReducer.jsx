@@ -52,10 +52,12 @@ export const refreshCard = (city) => ({type: REFRESH_CARD, city});
 export const addHourly = (hourlyData) => ({type: ADD_CHART_DATA, hourlyData})
 
 export const getCityData = (name,action) =>{
-    return async (dispatch) =>{
+    return async (dispatch,getState) =>{
         if (action === 'ADD'){
             let result = await weatherApi.getCityData(name);
-            dispatch(addCity(result))
+            const duplicateCityEntered = getState().city.city.find(el => el.id === result.id)
+            duplicateCityEntered ? dispatch(refreshCard(result)) : dispatch(addCity(result))
+
         } else if (action === "REFRESH") {
             let result = await weatherApi.getCityData(name);
             dispatch(refreshCard(result))
