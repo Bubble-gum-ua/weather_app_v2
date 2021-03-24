@@ -46,17 +46,16 @@ export const ShortCard = (props) => {
         if (localStorage.length > 0) {
             let d = JSON.parse(localStorage.getItem("name"))
             if (d.length > 0) {
-                for (let i = 0; i < d.length; i++) {
-                    if (d[i] !== city.name) {
-                        d.push(city.name)
-                        localStorage.setItem("name", JSON.stringify(d))
-                    }
+                let res = d.indexOf(city.name)
+                if (res >= 0) {
+                } else {
+                    d.push(city.name)
+                    localStorage.setItem("name", JSON.stringify(d))
                 }
             } else {
                 d.push(city.name)
                 localStorage.setItem("name", JSON.stringify(d))
             }
-
         }
     }, [city.name])
 
