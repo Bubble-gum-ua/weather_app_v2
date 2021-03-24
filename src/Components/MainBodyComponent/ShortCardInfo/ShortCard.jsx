@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useEffect} from "react";
 import Paper from "@material-ui/core/Paper";
 import {Button, Grid, makeStyles} from "@material-ui/core";
 import {ActualDate} from "../../Tools/Date";
@@ -42,11 +42,30 @@ export const ShortCard = (props) => {
         return Math.round(value)
     }
 
+    useEffect(() => {
+        if (localStorage.length > 0) {
+            let d = JSON.parse(localStorage.getItem("name"))
+            if (d.length > 0) {
+                for (let i = 0; i < d.length; i++) {
+                    if (d[i] !== city.name) {
+                        d.push(city.name)
+                        localStorage.setItem("name", JSON.stringify(d))
+                    }
+                }
+            } else {
+                d.push(city.name)
+                localStorage.setItem("name", JSON.stringify(d))
+            }
+
+        }
+    }, [city.name])
+
     const deleteCityCard = () => {
         dispatch(deleteCity(city.name))
         let d = JSON.parse(localStorage.getItem("name"))
-
-        d = d.filter(item => item !==city.name)
+        d = d.filter(function (item) {
+            return item !== city.name
+        })
         console.log(d)
         localStorage.setItem("name", JSON.stringify(d))
     }

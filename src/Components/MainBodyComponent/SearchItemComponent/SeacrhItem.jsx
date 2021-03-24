@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React from "react";
 import {Button, Input} from "@material-ui/core";
 import {useFormik} from "formik";
 import {getCityData} from "../../Redux/CardReducer";
@@ -15,22 +15,19 @@ export const SearchItem = () => {
             if (localStorage.length === 0) {
                 localStorage.setItem("name", JSON.stringify([]))
             }
+            if (localStorage.length > 0) {
+                let d = JSON.parse(localStorage.getItem("name"))
+                for (let i = 0; i < d.length; i++) {
+                    if (d[i] === values.name) {
+                        alert("city already added")
+                    }
+                }
+            }
             dispatch(getCityData(values.name, 'ADD'))
             formik.resetForm()
-            let d = JSON.parse(localStorage.getItem("name"))
-            d.push(values.name)
-            console.log(d)
-            localStorage.setItem("name", JSON.stringify(d))
         },
     })
-    useEffect(() => {
-        let data = JSON.parse(localStorage.getItem("name"))
-        if (data != null) {
-            for (let i = 0; i < data.length; i++) {
-                dispatch(getCityData(data[i], 'ADD'))
-            }
-        }
-    }, [dispatch])
+
 
     return (
         <div>

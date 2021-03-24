@@ -1,7 +1,7 @@
 import React, {useEffect, useState} from "react";
 import {useHistory, useParams} from "react-router";
 import {ActualDate} from "../Tools/Date";
-import {getWeatherIcons, weatherApi} from "../Api/Api";
+import {getWeatherIcons} from "../Api/Api";
 import windIco from "../Assets/windIco.png";
 import humidityIco from "../Assets/humidity.png";
 import pressureIco from "../Assets/pressureIco.png";
@@ -11,7 +11,7 @@ import {Button, Grid, makeStyles} from "@material-ui/core";
 import {Clear} from "@material-ui/icons";
 import {GraphChart} from "./GraphChart/GraphChart";
 import {useDispatch} from "react-redux";
-import {getCityData, getHourlyData} from "../Redux/CardReducer";
+import {getHourlyData} from "../Redux/CardReducer";
 
 const useStyles = makeStyles((theme) => ({
     root: {

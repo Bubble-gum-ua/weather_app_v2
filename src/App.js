@@ -10,7 +10,7 @@ function App() {
     let city = useSelector(state => state.city.city)
     let hourlyData = useSelector(state => state.city.hourlyData)
     const dispatch = useDispatch()
-
+    useEffect(() => {
         if (city.length === 0) {
             let data = JSON.parse(localStorage.getItem("name"))
             if (data != null) {
@@ -19,12 +19,15 @@ function App() {
                 }
             }
         }
+    }, [dispatch,city.length])
+
 
     function fd() {
-        if( city.length > 0) {
+        if (city.length > 0) {
             return <DetailPAge city={city} hourlyData={hourlyData}/>
         }
     }
+
     return (
         <div className="App">
             <Switch>

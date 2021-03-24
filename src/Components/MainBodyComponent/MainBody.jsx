@@ -1,4 +1,4 @@
-import React, {useEffect} from "react";
+import React from "react";
 import {SearchItem} from "./SearchItemComponent/SeacrhItem";
 import {ShortCard} from "./ShortCardInfo/ShortCard";
 import Grid from "@material-ui/core/Grid";
