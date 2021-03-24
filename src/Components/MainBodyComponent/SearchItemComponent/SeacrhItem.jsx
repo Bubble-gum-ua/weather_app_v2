@@ -15,14 +15,14 @@ export const SearchItem = () => {
             if (localStorage.length === 0) {
                 localStorage.setItem("name", JSON.stringify([]))
             }
-            if (localStorage.length > 0) {
+          /*  if (localStorage.length > 0) {
                 let d = JSON.parse(localStorage.getItem("name"))
                 for (let i = 0; i < d.length; i++) {
                     if (d[i] === values.name) {
                         alert("city already added")
                     }
                 }
-            }
+            }*/
             dispatch(getCityData(values.name, 'ADD'))
             formik.resetForm()
         },

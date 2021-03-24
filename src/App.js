@@ -10,6 +10,7 @@ function App() {
     let city = useSelector(state => state.city.city)
     let hourlyData = useSelector(state => state.city.hourlyData)
     const dispatch = useDispatch()
+
     useEffect(() => {
         if (city.length === 0) {
             let data = JSON.parse(localStorage.getItem("name"))
