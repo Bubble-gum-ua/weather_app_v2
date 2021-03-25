@@ -98,18 +98,18 @@ export const DetailPAge = (props) => {
             </div>
             <div className="detailBox">
                 <Grid container spacing={3}>
-                    <Grid item xs={3}>
+                    <Grid item >
                         <img src={humidityIco} alt="humidityIco"/>
                         HUMIDITY: {city.main.humidity}%
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item >
                         <img src={temperatureIco} alt="temperatureIco"/>FEELS LIKE: {roundData(city.main.feels_like)} °C
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item >
                         <img src={windIco} alt="windIco"/>
                         SPEED: {city.wind.speed} M/S, DEG: {city.wind.deg}
                     </Grid>
-                    <Grid item xs={3}>
+                    <Grid item >
                         <img src={pressureIco} alt="pressureIco"/>PRESSURE: {city.main.pressure}
                     </Grid>
                 </Grid>
