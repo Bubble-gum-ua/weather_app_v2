@@ -21,11 +21,12 @@ const useStyles = makeStyles((theme) => ({
         borderBottom: "1px solid",
         borderLeft: "1px solid",
         position: "relative",
-        padding: "15px 5px 15px 0"
+        padding: "6px 5px 6px 0",
+        marginTop: "40px"
 
     },
     chart: {
-        paddingRight: "25px !important"
+        paddingRight: "calc(2% + 2px) !important"
     }
 
 }));
