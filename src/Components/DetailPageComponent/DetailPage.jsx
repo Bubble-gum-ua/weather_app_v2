@@ -26,7 +26,7 @@ const useStyles = makeStyles((theme) => ({
 
     },
     chart: {
-        paddingRight: "calc(2% + 2px) !important"
+        paddingRight: "calc(2% + 1px) !important"
     }
 
 }));
