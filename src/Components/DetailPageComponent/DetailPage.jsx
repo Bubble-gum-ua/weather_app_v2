@@ -10,8 +10,9 @@ import "./DetailPage.css"
 import {Button, Grid, makeStyles} from "@material-ui/core";
 import {Clear} from "@material-ui/icons";
 import {GraphChart} from "./GraphChart/GraphChart";
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {getHourlyData} from "../Redux/CardReducer";
+import {Preloader} from "../Preloader/Preloader";
 
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -32,7 +33,7 @@ const useStyles = makeStyles((theme) => ({
 export const DetailPAge = (props) => {
     const history = useHistory();
     const dispatch = useDispatch();
-
+    const isLoading = useSelector(state => state.loading.isLoading)
     const backToMain = () => {
         history.push(`/`)
     }
@@ -117,6 +118,7 @@ export const DetailPAge = (props) => {
                 <div className="chartTitle">
                     HOURLY TEMPERATURE GRAPHIC
                 </div>
+                {isLoading && <Preloader/>}
                 <Grid container spacing={1} className={classes.root}>
                     {hourlyTemp}
                 </Grid>

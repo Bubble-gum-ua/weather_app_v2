@@ -22,14 +22,19 @@ const useStyles = makeStyles((theme) => ({
         color: theme.palette.text.secondary,
         marginTop: "15px",
         background: "linear-gradient(to right, #FFFFFF, #C5CED3)",
-        maxWidth: "400px",
-        maxHeight: "200px",
+        maxWidth: "300px",
+        height: "200px",
     },
     clickZone: {
         cursor: "pointer"
     },
     buttons: {
         textAlign: "right"
+    },
+    icoButtonWrap: {
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "space-between"
     }
 }));
 
@@ -107,7 +112,7 @@ export const ShortCard = (props) => {
                               </span>
                         </div>
                     </Grid>
-                    <Grid item xs={4}>
+                    <Grid item xs={4} className={classes.icoButtonWrap}>
                         <img src={ico} alt="weatherIco"/>
                         <div className={classes.buttons}>
                             <Button

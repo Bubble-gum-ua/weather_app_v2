@@ -1,5 +1,6 @@
 import React from "react";
 import {weatherApi} from "../Api/Api";
+import {toggleIsLoading} from "./loadReducer";
 
 const ADD_CITY = "ADD_CITY";
 const REFRESH_CARD = "REFRESH_CARD";
@@ -54,10 +55,11 @@ export const addHourly = (hourlyData) => ({type: ADD_CHART_DATA, hourlyData})
 export const getCityData = (name,action) =>{
     return async (dispatch,getState) =>{
         if (action === 'ADD'){
+            dispatch(toggleIsLoading(true))
             let result = await weatherApi.getCityData(name);
             const duplicateCityEntered = getState().city.city.find(el => el.id === result.id)
             duplicateCityEntered ? dispatch(refreshCard(result)) : dispatch(addCity(result))
-
+            dispatch(toggleIsLoading(false))
         } else if (action === "REFRESH") {
             let result = await weatherApi.getCityData(name);
             dispatch(refreshCard(result))
@@ -68,7 +70,9 @@ export const getCityData = (name,action) =>{
 
 export const getHourlyData = (lat,lon) =>{
     return async (dispatch) =>{
+        dispatch(toggleIsLoading(true))
         let result = await weatherApi.getHourlyWeatherData(lat,lon);
         dispatch(addHourly(result))
+        dispatch(toggleIsLoading(false))
     }
 }

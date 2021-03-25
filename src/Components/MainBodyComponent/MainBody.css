@@ -4,4 +4,8 @@
 
 .mainBody h1 {
     text-align: center;
+    color: white;
+    font-size: 45px;
+    font-family: "Ubuntu", serif;
+    margin: 15px;
 }

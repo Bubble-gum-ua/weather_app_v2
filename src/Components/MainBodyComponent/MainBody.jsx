@@ -4,11 +4,15 @@ import {ShortCard} from "./ShortCardInfo/ShortCard";
 import Grid from "@material-ui/core/Grid";
 import {makeStyles} from "@material-ui/core";
 import "./MainBody.css"
+import {Preloader} from "../Preloader/Preloader";
+import {useSelector} from "react-redux";
 
 const useStyles = makeStyles((theme) => ({
     root: {
         flexGrow: 1,
-        justifyContent: "center"
+        justifyContent: "center",
+        width: "calc(100%)",
+        margin: "0"
     },
 
 }));
@@ -26,6 +30,7 @@ export const MainBody = (props) => {
     }
 
     const classes = useStyles();
+    const isLoading = useSelector(state => state.loading.isLoading)
 
     return (
         <div className="mainBody">
@@ -34,6 +39,7 @@ export const MainBody = (props) => {
                 <SearchItem/>
             </div>
             <div>
+                {isLoading && <Preloader/>}
                 <Grid container spacing={3} className={classes.root}>
                     {Card()}
                 </Grid>
