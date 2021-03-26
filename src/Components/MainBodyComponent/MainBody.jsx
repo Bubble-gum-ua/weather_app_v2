@@ -19,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
 
 
 export const MainBody = (props) => {
+
+    //here we add each card
+
     function Card() {
         if (props.city.length > 0) {
             return props.city.map(city =>

@@ -6,20 +6,21 @@ import {useDispatch} from "react-redux";
 
 
 const useStyles = makeStyles((theme) => ({
-    button:{
+    button: {
         background: "linear-gradient(115deg, #C5CED3 30%, #83CBCB)",
         color: "white"
     },
-    input:{
+    input: {
         color: "white"
     }
-
 }));
-
 
 export const SearchItem = () => {
     const dispatch = useDispatch()
     const classes = useStyles();
+
+    //here we use a search item, to search city and initial local storage
+
     const formik = useFormik({
         initialValues: {
             name: '',
@@ -28,14 +29,12 @@ export const SearchItem = () => {
             if (localStorage.length === 0) {
                 localStorage.setItem("name", JSON.stringify([]))
             }
-            if(values.name !==""){
+            if (values.name !== "") {
                 dispatch(getCityData(values.name, 'ADD'))
                 formik.resetForm()
             }
-
         }
     })
-
 
     return (
         <div>

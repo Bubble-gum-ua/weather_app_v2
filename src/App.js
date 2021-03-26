@@ -24,7 +24,8 @@ function App() {
         }
     }, [dispatch, city.length])
 
-    // checking data before render
+    //here we do onecall api call
+
     useEffect(() => {
         if (city) {
             for(let i=0; i< city.length; i++){
@@ -34,8 +35,9 @@ function App() {
         }
     }, [city, dispatch])
 
-    function fd() {
+    // checking data before render
 
+    function fd() {
         if (city.length > 0 && hourlyData.length > 0 ) {
             return <DetailPAge city={city} hourlyData={hourlyData}/>
         }

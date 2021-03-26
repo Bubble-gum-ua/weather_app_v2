@@ -32,8 +32,10 @@ const useStyles = makeStyles((theme) => ({
 
 export const DetailPAge = (props) => {
     const history = useHistory();
-    const dispatch = useDispatch();
     const isLoading = useSelector(state => state.loading.isLoading)
+
+    //changing url by clicking on X button
+
     const backToMain = () => {
         history.push(`/`)
     }
@@ -42,7 +44,9 @@ export const DetailPAge = (props) => {
     const nameFromLink = useParams();
     const [city, setCity] = useState('')
 
-     if (city.length === 0) {
+    //here we check name from link to rerender page
+
+    if (city.length === 0) {
         for (let i = 0; i < props.city.length; i++) {
             if (props.city[i].name === nameFromLink.name) {
                 return setCity(props.city[i])
@@ -56,10 +60,14 @@ export const DetailPAge = (props) => {
         return Math.round(value)
     }
 
+    //here we reduce 48 to 24h data from api
+
     let hoursCut = (props.hourlyData[0]?.hourly.length > 24
             ? props.hourlyData[0]?.hourly.splice(24)
             : props.hourlyData[0]?.hourly
     )
+
+    //here we take hourly temp graph chart
 
     let hourlyTemp = hoursCut?.map(h =>
         <Grid item className={classes.chart} key={h.id}>
@@ -92,18 +100,18 @@ export const DetailPAge = (props) => {
             </div>
             <div className="detailBox">
                 <Grid container spacing={3}>
-                    <Grid item >
+                    <Grid item>
                         <img src={humidityIco} alt="humidityIco"/>
                         HUMIDITY: {city.main.humidity}%
                     </Grid>
-                    <Grid item >
+                    <Grid item>
                         <img src={temperatureIco} alt="temperatureIco"/>FEELS LIKE: {roundData(city.main.feels_like)} °C
                     </Grid>
-                    <Grid item >
+                    <Grid item>
                         <img src={windIco} alt="windIco"/>
                         SPEED: {city.wind.speed} M/S, DEG: {city.wind.deg}
                     </Grid>
-                    <Grid item >
+                    <Grid item>
                         <img src={pressureIco} alt="pressureIco"/>PRESSURE: {city.main.pressure}
                     </Grid>
                 </Grid>

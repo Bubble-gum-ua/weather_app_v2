@@ -7,6 +7,7 @@ export function ActualDate () {
     let currentDate = date.getDate()
     let dayOfWeek = ["Mon","Tue","Wed","Thu","Fri","Sun","Sat"]
     let months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
+
     return (
         <span>
            <span>{dayOfWeek[day]}, </span>

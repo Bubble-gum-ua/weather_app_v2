@@ -18,14 +18,12 @@ export const cardReducer = (state = initialState, action) => {
             return {
                 ...state,
                 city: [action.city, ...state.city]
-
             }
         }
         case DELETE_CITY: {
             return {
                 ...state,
                 city: state.city.filter(el=> el.name !== action.name)
-
             }
         }
         case  REFRESH_CARD: {
@@ -40,17 +38,17 @@ export const cardReducer = (state = initialState, action) => {
                 hourlyData: [action.hourlyData, ...state.hourlyData]
             }
         }
-
         default:
             return state
     }
 }
 
-
 export const addCity = (city) => ({type: ADD_CITY, city});
 export const deleteCity = (name) => ({type: DELETE_CITY, name});
 export const refreshCard = (city) => ({type: REFRESH_CARD, city});
 export const addHourly = (hourlyData) => ({type: ADD_CHART_DATA, hourlyData})
+
+//here we take a city data by api call
 
 export const getCityData = (name,action) =>{
     return async (dispatch,getState) =>{
@@ -64,9 +62,10 @@ export const getCityData = (name,action) =>{
             let result = await weatherApi.getCityData(name);
             dispatch(refreshCard(result))
         }
-
     }
 }
+
+//here hourly reducer, where we take data by lat and lon
 
 export const getHourlyData = (lat,lon) =>{
     return async (dispatch) =>{
