@@ -24,7 +24,8 @@ function App() {
 
 
     function fd() {
-        if (city.length > 0) {
+        let data = JSON.parse(localStorage.getItem("name"))
+        if (city.length > 0 && city.length === data.length) {
             return <DetailPAge city={city} hourlyData={hourlyData}/>
         }
     }
