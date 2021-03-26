@@ -30,7 +30,7 @@ export const cardReducer = (state = initialState, action) => {
         }
         case  REFRESH_CARD: {
             return {
-                ...state.state,
+                ...state,
                 city: [...state.city]
             }
         }
