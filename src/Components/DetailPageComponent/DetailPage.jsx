@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useState} from "react";
 import {useHistory, useParams} from "react-router";
 import {ActualDate} from "../Tools/Date";
 import {getWeatherIcons} from "../Api/Api";
@@ -11,7 +11,6 @@ import {Button, Grid, makeStyles} from "@material-ui/core";
 import {Clear} from "@material-ui/icons";
 import {GraphChart} from "./GraphChart/GraphChart";
 import {useDispatch, useSelector} from "react-redux";
-import {getHourlyData} from "../Redux/CardReducer";
 import {Preloader} from "../Preloader/Preloader";
 
 const useStyles = makeStyles((theme) => ({
@@ -43,13 +42,7 @@ export const DetailPAge = (props) => {
     const nameFromLink = useParams();
     const [city, setCity] = useState('')
 
-    useEffect(() => {
-        if (city) {
-            dispatch(getHourlyData(city.coord.lat, city.coord.lon))
-        }
-    }, [city, dispatch])
-
-    if (city.length === 0) {
+     if (city.length === 0) {
         for (let i = 0; i < props.city.length; i++) {
             if (props.city[i].name === nameFromLink.name) {
                 return setCity(props.city[i])

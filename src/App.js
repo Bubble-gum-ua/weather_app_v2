@@ -4,12 +4,14 @@ import {MainBody} from "./Components/MainBodyComponent/MainBody";
 import {useDispatch, useSelector} from "react-redux";
 import {Route, Switch} from "react-router";
 import {DetailPAge} from "./Components/DetailPageComponent/DetailPage";
-import {getCityData} from "./Components/Redux/CardReducer";
+import {getCityData, getHourlyData} from "./Components/Redux/CardReducer";
 
 function App() {
     let city = useSelector(state => state.city.city)
     let hourlyData = useSelector(state => state.city.hourlyData)
     const dispatch = useDispatch()
+
+    //here we add data from local storage when we reload main page
 
     useEffect(() => {
         if (city.length === 0) {
@@ -22,10 +24,19 @@ function App() {
         }
     }, [dispatch, city.length])
 
+    // checking data before render
+    useEffect(() => {
+        if (city) {
+            for(let i=0; i< city.length; i++){
+                dispatch(getHourlyData(city[i].coord.lat, city[i].coord.lon))
+            }
+
+        }
+    }, [city, dispatch])
 
     function fd() {
-        let data = JSON.parse(localStorage.getItem("name"))
-        if (city.length > 0 && city.length === data.length) {
+
+        if (city.length > 0 && hourlyData.length > 0 ) {
             return <DetailPAge city={city} hourlyData={hourlyData}/>
         }
     }
